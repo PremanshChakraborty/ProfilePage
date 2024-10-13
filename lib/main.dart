@@ -199,35 +199,39 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(height: 22,),
                 Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: MediaQuery.sizeOf(context).width * 0.3,
-                      height: 1,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [Color(0x00555555), Color(0xFF01A3F5)],
-                          stops: [0, 1],
-                          begin: AlignmentDirectional(-1, 0),
-                          end: AlignmentDirectional(1, 0),
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Color(0x00555555), Color(0xFF01A3F5)],
+                            stops: [0, 1],
+                            begin: AlignmentDirectional(-1, 0),
+                            end: AlignmentDirectional(1, 0),
+                          ),
                         ),
                       ),
                     ),
+                    SizedBox(width: 13,),
                     Text(
                       'PERSONAL DETAILS',
                       style: TextStyle(
                         color: Colors.white,
                       ),
                     ),
-                    Container(
-                      width: MediaQuery.sizeOf(context).width * 0.3,
-                      height: 1,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [Color(0x00555555), Color(0xFF01A3F5)],
-                          stops: [0, 1],
-                          begin: AlignmentDirectional(1, 0),
-                          end: AlignmentDirectional(-1, 0),
+                    SizedBox(width: 13,),
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Color(0x00555555), Color(0xFF01A3F5)],
+                            stops: [0, 1],
+                            begin: AlignmentDirectional(1, 0),
+                            end: AlignmentDirectional(-1, 0),
+                          ),
                         ),
                       ),
                     ),
@@ -237,7 +241,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Padding(padding: EdgeInsetsDirectional.fromSTEB(25, 0, 25, 0),
                   child: Container(
                     width: double.infinity,
-                    height: MediaQuery.sizeOf(context).height*0.47,
+                    height: 360,//MediaQuery.sizeOf(context).height*0.47,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
@@ -279,7 +283,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ),
                                   ),
                                   Container(
-                                    width: 175,
+                                    width: (MediaQuery.sizeOf(context).width-100)*0.6,
                                     height: 22,
                                     clipBehavior: Clip.hardEdge,
                                     decoration: BoxDecoration(
@@ -368,10 +372,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               size: 15,
                             ),
                             style: ButtonStyle(
+                              overlayColor: MaterialStateProperty.all(Color.fromRGBO(47, 98, 156, 1)),
+                              elevation: MaterialStateProperty.all(6),
+                              shadowColor: MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                                if (states.contains(MaterialState.hovered))
+                                return Color.fromRGBO(47, 98, 156, 1);
+                                else if (states.contains(MaterialState.pressed))
+                                  return Color.fromRGBO(47, 98, 156, 1);
+                                return Colors.transparent;
+                                }
+                                ),
                               minimumSize: MaterialStateProperty.all(Size(190, 32)),
                                 padding: MaterialStateProperty.all(EdgeInsets.zero),
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                              backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                              backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                                  if (states.contains(MaterialState.hovered))
+                                  return Color.fromRGBO(47, 98, 156, 1);
+                                  // else if (states.contains(MaterialState.pressed))
+                                  //   return Color.fromRGBO(47, 98, 156, 1);
+                                  return Colors.transparent;
+                                }
+                                ),
                               side: MaterialStateProperty.all(BorderSide(
                                 color: Colors.white,
                                 width: 0.6,
@@ -383,7 +406,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
-                )
+                ),
+                SizedBox(height: 130,),
               ],
             ),
           ),
